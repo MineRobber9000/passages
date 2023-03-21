@@ -2,7 +2,7 @@ const ws = require("ws");
 const { init } = require("@paralleldrive/cuid2");
 const cuid = init({});
 
-let wss = new ws.WebSocketServer({port:8080});
+let wss = new ws.WebSocketServer({port:8081});
 
 const validateChannel = (channel) => {
 	if (typeof channel !== "string" && typeof channel !== "number") throw new Error("Invalid type for channel!");
@@ -68,5 +68,7 @@ wss.on("connection",function(ws) {
 	});
 	ws.on("close",function(code,reason) {
 		console.log("closed");
+		console.log(code);
+		console.log(reason);
 	});
 });
